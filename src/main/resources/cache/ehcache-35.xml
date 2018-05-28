@@ -1,0 +1,30 @@
+<eh:config
+        xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+        xmlns:jsr107='http://www.ehcache.org/v3/jsr107'
+        xmlns:eh='http://www.ehcache.org/v3'
+        xsi:schemaLocation="http://www.ehcache.org/v3
+            http://www.ehcache.org/schema/ehcache-core.xsd">
+
+    <eh:service>
+        <jsr107:defaults enable-management="true" enable-statistics="true"></jsr107:defaults>
+    </eh:service>
+
+    <eh:cache-template name="defaultCache">
+        <eh:expiry>
+            <eh:tti unit="seconds">120</eh:tti>
+        </eh:expiry>
+        <eh:heap unit="entries">100</eh:heap>
+        <eh:heap-store-settings>
+            <eh:max-object-size unit="MB">1000</eh:max-object-size>
+        </eh:heap-store-settings>
+    </eh:cache-template>
+
+    <eh:cache alias="cache" uses-template="defaultCache">
+        <eh:key-type>java.lang.Long</eh:key-type>
+        <eh:value-type>br.com.jdh.ehcache.basic.BasicEntity</eh:value-type>
+    </eh:cache>
+    <eh:cache alias="foo" uses-template="defaultCache">
+        <eh:key-type>java.lang.Long</eh:key-type>
+        <eh:value-type>br.com.jdh.ehcache.foo.Foo</eh:value-type>
+    </eh:cache>
+</eh:config>

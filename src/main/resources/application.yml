@@ -1,0 +1,21 @@
+server:
+  http2:
+    enabled: true
+logging:
+  level:
+    net.sf.ehcache: none
+    org.springframework.cache: none
+    org.springframework.cache.ehcache: debug
+spring:
+  cache:
+    name: cacheName
+#    jcache:
+#      config: classpath:cache/ehcache-35.xml
+    ehcache:
+      config: classpath:cache/ehcache.xml
+  datasource:
+    url: jdbc:h2:mem:AZ;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driverClassName: org.h2.Driver
+    username: sa
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
